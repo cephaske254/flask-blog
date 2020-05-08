@@ -1,0 +1,22 @@
+.landing-page{
+    background: url('../images/landing.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.landing-page .row{
+    min-height: 75%;
+    background-color: rgba(19, 1, 36, 0.452);
+}
+
+.wlcm-h1{
+    text-shadow: 2px 2px 2px black;
+}
+.auth-form input, .auth-form textarea{
+    background-color: transparent !important;
+    color: rgba(255, 255, 255, 0.8);
+}
+.auth-form input:focus, .auth-form textarea:focus{
+    background-color: transparent;
+    color: #ffffff;
+}
