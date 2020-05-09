@@ -2,8 +2,17 @@ import os
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
+    # simplemde conf
     SIMPLEMDE_JS_IIFE = True
     SIMPLEMDE_USE_CDN = True
+    # db conf
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://cephas:admin121@localhost/flask_blog'
+
+
+    @staticmethod
+    def init_app(app):
+        pass
 
 class DevConfig(Config):
     DEBUG=True
