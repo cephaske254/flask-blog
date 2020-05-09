@@ -1,0 +1,5 @@
+{% macro errors(errors) %}
+    {% for error in errors %}
+    <p class="text-light position-absolute font-weight-bold px-1 my-1 rounded bg-danger">{{error}}</p>
+    {% endfor %}
+{% endmacro %}
