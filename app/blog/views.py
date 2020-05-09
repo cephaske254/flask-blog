@@ -6,7 +6,7 @@ def index():
     title = 'Blog | TRNB'
     return render_template('blog/index.html',nav=True, title=title)
 
-@blog.route('/new-post')
+@blog.route('/new-post',methods=['GET','POST'])
 def new_post():
     title = 'New Post | TRNB'
     return render_template('blog/new_post.html',nav=True, title=title)

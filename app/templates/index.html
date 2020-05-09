@@ -3,10 +3,12 @@
 <div class="container-fluid landing-page vh-100">
     {% block navbar %} {{super()}}{% endblock %}
     <div class="row text-light justify-content-center align-items-center">
-        <div class="col-sm-12 col-md-7 text-center">
-            <h1 class="wlcm-h1">Welcome To TRNB Blog!</h1>
-            <a href="{{url_for('auth.signin')}}" role="button" class="btn btn-lg btn-success">SIGN IN</a> OR
-            <a href="{{url_for('auth.signup')}}"" role="button" class="btn btn-lg btn-success">SIGN UP</a>
+        <div class="text-center wlcm-col p-4 rounded">
+            <hr class="bg-light rounded p-1">
+            <h1 class="wlcm-h1">WELCOME TO TRN BLOG!</h1>
+            <a href="{{url_for('auth.signin')}}" role="button" class="btn btn-lg btn-primary">SIGN IN</a> OR
+            <a href="{{url_for('auth.signup')}}" role=" button" class="btn btn-lg btn-info">SIGN UP</a>
+            <hr class="bg-light p-1 rounded">
         </div>
     </div>
 </div>

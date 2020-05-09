@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
+    {{ simplemde.css }}
+    {{ simplemde.js }}
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/fontawesome.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/all.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
 </head>
+
 <body>
-{% if nav %}
+    {% if nav %}
     {% block navbar %}
-        {% include 'navbar.html' %}
+    {% include 'navbar.html' %}
     {% endblock %}
-{% endif %}
-{% block content %}
+    {% endif %}
+    {% block content %}
 
-{% endblock %}
+    {% endblock %}
 
-{% block scripts%}
-<script src="{{url_for('static', filename='js/jquery-3.4.1.min.js')}}"></script>
-<script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
-<script src="{{url_for('static', filename='js/styles.js')}}"></script>
-{% endblock %}
+    {% block scripts%}
+    <script src="{{url_for('static', filename='js/jquery-3.4.1.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/styles.js')}}"></script>
+    {% endblock %}
 </body>
+
 </html>

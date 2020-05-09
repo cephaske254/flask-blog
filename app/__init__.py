@@ -1,7 +1,13 @@
 from flask import Flask
 from config import Config,config_loader
+from flask_simplemde import SimpleMDE
+
+simplemde = SimpleMDE()
 def create_app(conf_type):
     app = Flask(__name__)
+
+    # EXTENSIONS
+    simplemde.init_app(app)
 
     # COFIGURATIONS
     app.config.from_object(Config)

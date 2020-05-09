@@ -1,9 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap'); 
+/* font-family: 'Oswald', sans-serif */
+
 body {
     background: #121212;
+    color: rgba(255, 255, 255, 0.87) !important;
 }
-
+form{
+    font-family: 'Oswald', sans-serif;
+}
 .navbar{
     background: #202020;
+}
+.navbar .navbar-brand{
+    font-family: 'Oswald', sans-serif;
 }
 .landing-page{
     background: url('../images/landing.jpg');
@@ -13,11 +22,13 @@ body {
 
 .landing-page .row{
     min-height: 75%;
+}
+.wlcm-col,.auth-form-col {
     background-color: #13012473;
 }
-
 .wlcm-h1{
     text-shadow: 2px 2px 2px black;
+    font-family: 'Oswald', sans-serif;
 }
 .auth-form input, .auth-form textarea{
     background-color: transparent !important;
@@ -33,13 +44,12 @@ body {
 }
 .card-slide {
     background: #121212;
-    color: rgba(255, 255, 255,.87);
     border-color: rgba(59, 202, 188,.87) !important;
     transition: all .3s;
     height: 100%;
 }
 .card-slide:hover {
-    box-shadow: 0 0.2em .4em rgba(255, 255, 255, 0.60);
+    box-shadow: 0 0.2em .4em rgba(255, 255, 255, 0.30);
 }
 .card-slide .card-footer{
     margin: 0;
@@ -53,4 +63,29 @@ body {
 }
 .liked {
     color: rgb(243, 49, 81) !important;
+}
+
+/* POST FORM */
+.post-form {
+    font-family: 'Oswald', sans-serif;
+    border-color: rgba(59, 202, 188,.87) !important;
+    padding: 10px;
+}
+.post-form label{
+    font-weight: bold;
+}
+.post-form input,.CodeMirror, .post-form textarea, .post-form select,.custom-file-label,.editor-toolbar, .editor-toolbar a,.editor-preview{
+    color: rgba(255, 255, 255, 0.87) !important;
+    border-width: 0;
+    background: #202020 !important;
+    caret-color: red !important;
+}
+.tag-form input{
+    border-color: rgba(59, 202, 188,.87) !important;
+    background: #202020 !important;
+    /* background: transparent !important; */
+}
+.tag-form button{
+    background: rgba(59, 202, 188,.87) !important;
+    color: rgba(255, 255, 255,.87);
 }
