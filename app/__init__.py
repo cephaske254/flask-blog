@@ -28,5 +28,5 @@ def create_app(conf_type):
     # EXTENSIONS
     simplemde.init_app(app)
     db.init_app(app)
-    
+
     return app
