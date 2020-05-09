@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    {% include 'blog/new_tag.html' %}
+    <div class="row">
+        <div class="col-md-6 col-sm-7 col-lg-4">
+            <form action="{{url_for('blog.new_post')}}" method="post">
+                
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
