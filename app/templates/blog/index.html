@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row card-slides-row">
+        <div class="col-sm-6 col-md-4 col-lg-3 p-2">
+            <div class="card border-dark card-slide">
+                <img src="/static/images/landing.jpg" alt="" class="card-img-top">
+                <div class="card-body py-1">
+                    <div class="card-text">
+                        <div class="card-title">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut aperiam voluptatem fugiat enim iste unde aliquid odit, rerum accusantium eveniet pariatur, rem modi delectus? Quidem beatae repudiandae facilis ex nam.
+                        </div>
+                        <div class="card-subtitle small">
+                            <a href="#" class="card-link">#general</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer py-1">
+                    <a href="#" class="btn btn-sm view-more">FULL POST</a>
+                    <div class="btn-group reactions">
+                        <span class="btn btn-sm like liked">
+                            <i class="fas fa-thumbs-up"></i>
+                            <span class="badge">12</span>
+                        </span>
+                        <span class="btn btn-sm comment">
+                            <i class="fas fa-comment"></i>
+                            <span class="badge">12</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

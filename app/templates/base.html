@@ -6,6 +6,7 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/fontawesome.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/all.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
 </head>
 <body>
@@ -16,6 +17,12 @@
 {% endif %}
 {% block content %}
 
+{% endblock %}
+
+{% block scripts%}
+<script src="{{url_for('static', filename='js/jquery-3.4.1.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/styles.js')}}"></script>
 {% endblock %}
 </body>
 </html>

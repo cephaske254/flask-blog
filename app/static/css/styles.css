@@ -1,3 +1,10 @@
+body {
+    background: #121212;
+}
+
+.navbar{
+    background: #202020;
+}
 .landing-page{
     background: url('../images/landing.jpg');
     background-position: center;
@@ -6,7 +13,7 @@
 
 .landing-page .row{
     min-height: 75%;
-    background-color: rgba(19, 1, 36, 0.452);
+    background-color: #13012473;
 }
 
 .wlcm-h1{
@@ -19,4 +26,31 @@
 .auth-form input:focus, .auth-form textarea:focus{
     background-color: transparent;
     color: #ffffff;
+}
+
+.card-slides-row .card-img-top {
+    height: 166px;
+}
+.card-slide {
+    background: #121212;
+    color: rgba(255, 255, 255,.87);
+    border-color: rgba(59, 202, 188,.87) !important;
+    transition: all .3s;
+    height: 100%;
+}
+.card-slide:hover {
+    box-shadow: 0 0.2em .4em rgba(255, 255, 255, 0.60);
+}
+.card-slide .card-footer{
+    margin: 0;
+}
+.card-slide .view-more{
+    border-color: turquoise;
+    color: rgba(255, 255, 255, 0.87); 
+}
+.reactions .btn{
+    color: aqua;
+}
+.liked {
+    color: rgb(243, 49, 81) !important;
 }
