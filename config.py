@@ -9,7 +9,8 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://cephas:admin121@localhost/flask_blog'
 
-
+    UPLOADED_PHOTOS_DEST ='app/static/images/blog'
+    
     @staticmethod
     def init_app(app):
         pass

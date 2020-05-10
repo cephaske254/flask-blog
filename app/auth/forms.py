@@ -17,3 +17,9 @@ class SignupForm(FlaskForm):
         if User.query.filter_by(username = field.data).first():
             raise ValidationError('Username Taken!')
 
+class SigninForm(FlaskForm):
+    username = StringField('Username',validators=[Required()])
+    password = PasswordField('Password',validators=[Required()])
+    signed_in = BooleanField('Keep me signed in')
+    
+       

@@ -3,3 +3,10 @@
     <p class="text-light position-absolute font-weight-bold px-1 my-1 rounded bg-danger">{{error}}</p>
     {% endfor %}
 {% endmacro %}
+
+{% macro return_options(options) %}
+<option value="general" selected='true'>SELECT</option>
+    {% for option in options %}
+<option value="{{option}}">option</option>
+    {% endfor %}
+{% endmacro %}
