@@ -6,4 +6,7 @@ class NewPost(FlaskForm):
     tag = SelectField('Tag',validators=[Required()])
     content = TextAreaField('Content')
     photo = FileField('Photo',validators=[Required()])
-    
+
+class TagForm(FlaskForm):
+    name = StringField()
+    submit = SubmitField('Add')

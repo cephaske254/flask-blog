@@ -45,9 +45,19 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String())
     content = db.Column(db.String())
-    publish = db.Column(db.String())
-    tag = db.Column(db.String())
+    publish = db.Column(db.String(),default=True)
+    tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'))
     photo = db.Column(db.String())
     user_id = db.Column(db.Integer(), db.ForeignKey('users.id'))
     date = db.Column(db.DateTime(), default=datetime.utcnow)
+    tag_name = db.relationship('Tag', backref='tag_name')
 
+class Tag(db.Model):
+    __tablename__='tags'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String())
+    tag = db.Column(db.String())
+
+    @classmethod
+    def get_tags(cls):
+        return Tag.query.all()
