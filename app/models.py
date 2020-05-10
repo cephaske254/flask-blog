@@ -24,6 +24,7 @@ class User(UserMixin,db.Model):
     role = db.Column(db.String(),default='user')
     date = db.Column(db.DateTime(), default=datetime.utcnow)
     posts = db.relationship('Post', backref='user',lazy='dynamic')
+    Comments = db.relationship('Comments', backref='user',lazy='dynamic')
 
     @property
     def password(self):
@@ -53,6 +54,7 @@ class Post(db.Model):
     tag_name = db.relationship('Tag', backref='tag_name')
     reactions = db.relationship('Reactions',backref='reaction')
 
+
 class Tag(db.Model):
     __tablename__='tags'
     id = db.Column(db.Integer, primary_key=True)
@@ -63,9 +65,8 @@ class Tag(db.Model):
     def get_tags(cls):
         return Tag.query.all()
 
-class Reactions(db.Model):
-    __tablename__ = 'reactions'
+class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    liked = db.Column(db.String())
-    post_id = db.Column(db.Integer,db.ForeignKey('posts.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    comment = db.Column(db.String())
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
