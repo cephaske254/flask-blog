@@ -48,9 +48,10 @@ class Post(db.Model):
     publish = db.Column(db.String(),default=True)
     tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'))
     photo = db.Column(db.String())
-    user_id = db.Column(db.Integer(), db.ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     date = db.Column(db.DateTime(), default=datetime.utcnow)
     tag_name = db.relationship('Tag', backref='tag_name')
+    reactions = db.relationship('Reactions',backref='reaction')
 
 class Tag(db.Model):
     __tablename__='tags'
@@ -61,3 +62,10 @@ class Tag(db.Model):
     @classmethod
     def get_tags(cls):
         return Tag.query.all()
+
+class Reactions(db.Model):
+    __tablename__ = 'reactions'
+    id = db.Column(db.Integer, primary_key=True)
+    liked = db.Column(db.String())
+    post_id = db.Column(db.Integer,db.ForeignKey('posts.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
