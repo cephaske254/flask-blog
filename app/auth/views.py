@@ -41,9 +41,9 @@ def signin():
     if current_user is not None and current_user.is_authenticated:
         return redirect(url_for('blog.index'))
     return render_template('auth/signin.html', title=title,form=form)
-@auth.route('/logout')
+@auth.route('/signout')
 @login_required
-def logout():
+def signout():
     logout_user()
     return redirect(url_for('blog.index'))
 

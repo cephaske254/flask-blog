@@ -1,6 +1,7 @@
 from flask import render_template,redirect,request,abort
 from . import blog
 from .forms import NewPost,TagForm,CommentForm
+from ..auth import forms as auth_forms
 from ..models import Post,Tag,Comments
 from app import db,photos
 from flask_login import current_user,login_required
@@ -37,6 +38,23 @@ def new_post():
         db.session.add(post)
         db.session.commit()
     return render_template('blog/new_post.html',nav=True, title=title,form=form,tagform=tagform,tag_options = tags)
+@blog.route('/new-admin',methods=['POST','GET'])
+@login_required
+def new_admin():
+    if current_user.role !='admin':
+        abort(404)
+    form = auth_forms.SignupForm()
+    if form.validate_on_submit():
+        username = form.username.data
+        email = form.email.data
+        password = form.password.data
+        user = User(username=username,password=password,email=email,role='admin')
+        print ('_____')
+        print (user.role)
+        print ('_____')
+        db.session.add(user)
+        # db.session.commit()
+    return render_template('blog/new_admin.html',form=form)
 
 @blog.route('/new_tag',methods=['GET','POST'])
 @login_required
