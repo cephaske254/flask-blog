@@ -16,7 +16,6 @@ db = SQLAlchemy()
 def create_app(conf_type):
     app = Flask(__name__)
 
-
     # COFIGURATIONS
     app.config.from_object(config_loader[conf_type])
     app.config.from_object(Config)
@@ -32,7 +31,7 @@ def create_app(conf_type):
     app.register_blueprint(auth_blueprint)
 
     from .blog import blog as blog_blueprint
-    app.register_blueprint(blog_blueprint,url_prefix='/blog')
+    app.register_blueprint(blog_blueprint)
     
 
     # EXTENSIONS

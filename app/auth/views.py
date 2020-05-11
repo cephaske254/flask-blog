@@ -2,8 +2,7 @@ from flask import render_template, redirect,url_for,flash,request
 from . import auth
 from .forms import SignupForm,SigninForm
 from ..models import User,Post,get_by_mail_username
-from app import db
-from flask_login import login_user
+from flask_login import login_user,current_user,login_required,logout_user
 
 
 @auth.route('/signup', methods =['POST','GET'])
@@ -19,6 +18,9 @@ def signup():
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('auth.signin'))
+    if current_user is not None and current_user.is_authenticated:
+        return redirect(url_for('blog.index'))
+
     return render_template('auth/signup.html', title=title, form=form)
 
 
@@ -35,4 +37,14 @@ def signin():
             login_user(user,signed_in)
             return redirect(request.args.get('next') or url_for('blog.index'))
         flash('Wrong credentials!')
+
+    if current_user is not None and current_user.is_authenticated:
+        return redirect(url_for('blog.index'))
     return render_template('auth/signin.html', title=title,form=form)
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('blog.index'))
+
+

@@ -10,3 +10,8 @@ class NewPost(FlaskForm):
 class TagForm(FlaskForm):
     name = StringField()
     submit = SubmitField('Add')
+
+class CommentForm(FlaskForm):
+    comment = StringField()
+    submit = SubmitField('Add')
+

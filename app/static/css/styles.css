@@ -4,8 +4,6 @@
 body {
     background: #121212;
     color: rgba(255, 255, 255, 0.87) !important;
-}
-form{
     font-family: 'Oswald', sans-serif;
 }
 .navbar{
@@ -38,10 +36,10 @@ form{
     background-color: transparent;
     color: #ffffff;
 }
-
+/* 
 .card-slides-row .card-img-top {
     height: 166px;
-}
+} */
 .card-slide {
     background: #121212;
     border-color: rgba(59, 202, 188,.87) !important;
@@ -50,6 +48,7 @@ form{
 }
 .card-slide:hover {
     box-shadow: 0 0.2em .4em rgba(255, 255, 255, 0.30);
+    cursor: pointer;
 }
 .card-slide .card-footer{
     margin: 0;
@@ -60,9 +59,6 @@ form{
 }
 .reactions .btn{
     color: aqua;
-}
-.liked {
-    color: rgb(243, 49, 81) !important;
 }
 
 /* POST FORM */
@@ -88,4 +84,9 @@ form{
 .tag-form button{
     background: rgba(59, 202, 188,.87) !important;
     color: rgba(255, 255, 255,.87);
+}
+
+.comments{
+    font-size: small;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
