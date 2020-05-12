@@ -18,7 +18,7 @@ class SignupForm(FlaskForm):
             raise ValidationError('Username Taken!')
 
 class SigninForm(FlaskForm):
-    username = StringField('Username',validators=[Required()])
+    username = StringField('Email or Username',validators=[Required()])
     password = PasswordField('Password',validators=[Required()])
     signed_in = BooleanField('Keep me signed in')
     

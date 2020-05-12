@@ -5,31 +5,35 @@
     {% include 'blog/new_tag.html' %}
     <div class="row justify-content-center py-1">
         <div class="col-md-8 col-sm-10 col-lg-6">
-            <form action="{{url_for('blog.new_post')}}" enctype="multipart/form-data" class='form-horizontal post-form border rounded' method="post">
-                <h3 class="text-uppercase">Create Blog Post</h3>
+            <form action="{{url_for('blog.edit_post',post_id=post.id)}}" enctype="multipart/form-data" class='form-horizontal post-form border rounded' method="post">
+                {{post.tag}}
+                <h3 class="text-uppercase">Edit Blog Post</h3>
                 <div class="form-group">
                     {{form.csrf_token}}
                     {{form.title.label}}
-                    {{form.title(class='form-control')}}
+                    {{form.title(class='form-control',value=post.title)}}
                 </div>
                 <div class="form-group">
                     {{form.tag.label}}
                     <select class="form-control" id="tag" name="tag" required>
+                        <option value="{{post.tag_name.id}}" selected='true'>{{post.tag_name.name}}</option>
                         {{macro.return_options(tag_options)}}
                     </select>
                 </div>
                 <div class="form-group">
                     {{form.content.label}}
-                    {% set f = form.content.process_data("") %}
+                    {% set f = form.content.process_data(post.content) %}
                     {{form.content(class='form-control')}}
                     {{ simplemde.load}}
 
                 </div>
                 <div class="form-group">
-                    <div class="custom-file">
-                        {{form.photo(class='custom-file-input',class="custom-file-input",id="photo", required='true')}}
-                        {{form.photo.label(class='custom-file-label')}} 
-                    </div>  
+                    <button type="button" class="btn btn-sm btn-primary m-1 change-photo-btn">Change Photo</button>
+
+                    <div class="custom-file collapse" id="phtChange">
+                        {{form.photo(class='custom-file-input',class="custom-file-input",id="photo")}}
+                        {{form.photo.label(class='custom-file-label')}}
+                    </div>
                 </div>
                 <div class="btn-group">
                     <button type="submit" class="btn btn-sm btn-dark">POST & PUBLISH</button>

@@ -5,7 +5,7 @@
 {% endmacro %}
 
 {% macro return_options(options) %}
-<option value="general" selected='true' disabled>Choose Tag</option>
+<option value="general" disabled>Choose Tag</option>
     {% for option in options %}
 <option value="{{option.id}}">{{option.name}}</option>
     {% endfor %}
@@ -47,10 +47,14 @@
 {% endmacro %}
 
 {% macro display_comments(comments)%}
+{% if comments %}
     {% for comment in comments %}
     <div class="my-1 border-bottom border-dark px-1" id='comment_{{comment.id}}'>
         <span class="username">@cephas</span> - 
         <span class="content">{{comment.comment}}</span>
      </div>
      {% endfor %}
+{% else %}
+<p class="text-center">No comments so far.</p>
+{% endif %}
 {% endmacro %}

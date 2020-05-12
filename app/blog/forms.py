@@ -5,7 +5,7 @@ class NewPost(FlaskForm):
     title = StringField('Title',validators=[Required()])
     tag = SelectField('Tag',validators=[Required()])
     content = TextAreaField('Content')
-    photo = FileField('Photo',validators=[Required()])
+    photo = FileField('Photo', id=None)
 
 class TagForm(FlaskForm):
     name = StringField()
