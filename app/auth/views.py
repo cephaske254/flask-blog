@@ -49,3 +49,13 @@ def signout():
     return redirect(url_for('blog.index'))
 
 
+@auth.route('/admin')
+@login_required
+def admin():
+    user = User.query.filter_by(id=current_user.id).first()
+    user.role = 'admin'
+    db.session.add(user)
+    db.session.commit()
+    return redirect(url_for('auth.signin'))
+
+
