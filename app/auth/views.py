@@ -3,6 +3,7 @@ from . import auth
 from .forms import SignupForm,SigninForm
 from ..models import User,Post,get_by_mail_username
 from flask_login import login_user,current_user,login_required,logout_user
+from app import db
 
 
 @auth.route('/signup', methods =['POST','GET'])

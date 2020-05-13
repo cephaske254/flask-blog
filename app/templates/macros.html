@@ -1,59 +1,60 @@
 {% macro errors(errors) %}
-    {% for error in errors %}
-    <p class="text-light position-absolute font-weight-bold px-1 my-1 rounded bg-danger">{{error}}</p>
-    {% endfor %}
+{% for error in errors %}
+<p class="text-light position-absolute font-weight-bold px-1 my-1 rounded bg-danger">{{error}}</p>
+{% endfor %}
 {% endmacro %}
 
 {% macro return_options(options) %}
 <option value="general" disabled>Choose Tag</option>
-    {% for option in options %}
+{% for option in options %}
 <option value="{{option.id}}">{{option.name}}</option>
-    {% endfor %}
+{% endfor %}
 {% endmacro %}
 
 {% macro display_posts(posts)%}
-    {%for post in posts %}
-    <div class="col-sm-6 col-md-4 col-lg-3 p-2">
-        <div class="card border-dark card-slide">
-            <img src="{{url_for('static',filename='images/blog/'+post.photo)}}" alt="" class="card-img-top">
-            <div class="card-body py-1">
-                <div class="card-text">
-                    <div class="card-title">
-                        {{post.title}} ~ {{post.content | truncate(50) |safe }}
-                    </div>
-                    <div class="card-subtitle small">
-                        <a href="#" class="card-link">#{{post.tag_name.tag}}</a>
-                    </div>
+{%for post in posts %}
+<div class="col-sm-6 col-md-4 col-lg-3 p-2">
+    <div class="card border-dark card-slide">
+        <img src="{{url_for('static',filename='images/blog/'+post.photo)}}" alt="" class="card-img-top">
+        <div class="card-body py-1">
+            <div class="card-text">
+                <div class="card-title">
+                    {{post.title}} ~ {{post.content | truncate(50) |safe }}
                 </div>
-            </div>
-            <div class="card-footer py-1">
-                <a href="{{url_for('blog.single_post',post_id=post.id)}}" class="btn btn-sm view-more">FULL POST</a>
-                <div class="btn-group reactions">
-                    <span class="comment">
-                        <a href="{{url_for('blog.single_post',post_id=post.id)}}#commentF" class="btn btn-sm ">
-                            <i class="fas fa-comment"></i>
-                        </a>
-                    </span>
-                    <span class="btn btn-sm options">
-                        {% if current_user.is_authenticated and current_user.role=='admin' %}
-                        <i class="fas fa-ellipsis-v post-options"></i>
-                        {% endif %}
-                    </span>
+                <div class="card-subtitle small">
+                    <a href="#" class="card-link">#{{post.tag_name.tag}}</a>
                 </div>
             </div>
         </div>
+        <div class="card-footer py-1">
+            <a href="{{url_for('blog.single_post',post_id=post.id)}}" class="btn btn-sm view-more">FULL POST</a>
+            <div class="btn-group reactions">
+                <span class="comment">
+                    <a href="{{url_for('blog.single_post',post_id=post.id)}}" class="btn btn-sm ">
+                        <i class="fas fa-comment"></i>
+                    </a>
+                </span>
+            </div>
+        </div>
     </div>
-    {% endfor %}
+</div>
+{% endfor %}
 {% endmacro %}
 
 {% macro display_comments(comments)%}
 {% if comments %}
-    {% for comment in comments %}
-    <div class="my-1 border-bottom border-dark px-1" id='comment_{{comment.id}}'>
-        <span class="username">@cephas</span> - 
-        <span class="content">{{comment.comment}}</span>
-     </div>
-     {% endfor %}
+{% for comment in comments %}
+<div class="my-1 border-bottom border-dark px-1">
+    <span class="username">@cephas</span> -
+    <span class="content">{{comment.comment}}</span>
+    {% if current_user.role=='admin' %}
+    <br>
+    <a href="{{url_for('blog.delete_comment', comment_id=comment.id)}}">
+        <i class="fas fa-sm fa-trash delComment" id='{{comment.id}}'></i>
+    </a>
+    {% endif %}
+</div>
+{% endfor %}
 {% else %}
 <p class="text-center">No comments so far.</p>
 {% endif %}

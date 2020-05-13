@@ -1,7 +1,8 @@
 from . import db,login_manager
 from datetime import datetime
 from werkzeug.security import check_password_hash,generate_password_hash
-from flask_login import UserMixin
+from flask_login import UserMixin,current_user
+import markdown2
 
 @login_manager.user_loader
 def user_loader(id):
@@ -23,6 +24,7 @@ class User(UserMixin,db.Model):
     profile_pic = db.Column(db.String())
     role = db.Column(db.String(),default='user')
     date = db.Column(db.DateTime(), default=datetime.utcnow)
+    subscribe = db.Column(db.String(), default='false')
     posts = db.relationship('Post', backref='user',lazy='dynamic')
 
     @property
@@ -55,7 +57,20 @@ class Post(db.Model):
 
     @classmethod
     def get_single_post(cls,post_id):
-        return Post.query.filter_by(id=post_id).first()
+        post = Post.query.filter_by(id=post_id).first()
+        post.content_f = markdown2.markdown(post.content,extras=['code-friendly','fenced-code-blocks'])
+        return post
+
+    @classmethod
+    def get_all(cls):
+        if current_user.is_authenticated and current_user.role=='admin':
+            posts = Post.query.all()
+        else:
+            posts = Post.query.filter_by(publish='true')
+        for post in posts:
+            content_f = markdown2.markdown(post.content,extras=['code-friendly','fenced-code-blocks'])
+            post.content = content_f
+        return posts
 
 
 class Tag(db.Model):
@@ -72,7 +87,7 @@ class Comments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comment = db.Column(db.String())
-    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id',ondelete='CASCADE'))
 
     @classmethod
     def get_comments(cls,post_id):

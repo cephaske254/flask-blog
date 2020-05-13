@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% import 'macros.html' as macro %}
+{% import 'macros.html' as macro with context %}
 {% block content %}
 <div class="container-fluid">
     <div class="row py-2">
@@ -8,7 +8,7 @@
             {% if current_user.is_authenticated and current_user.role=='admin' %}
 
             <div class="btn-group m-1">
-                <button class="btn btn-sm btn-danger">
+                <button class="btn btn-sm btn-danger delPost" id="{{post.id}}">
                     <i class="fas fa-trash"></i>
                 </button>
                 <button class="btn btn-sm btn-danger">
@@ -24,7 +24,7 @@
             <h2 class="text-center">{{post.title}}</h2>
             <hr class="bg-dark">
             <blockquote class="text h4">
-                {{post.content | safe}}
+                {{post.content_f | safe}}
             </blockquote>
         </div>
         <div class="col-md-3 col-sm-5">

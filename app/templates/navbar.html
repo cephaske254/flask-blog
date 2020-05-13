@@ -2,7 +2,7 @@
     <a href="{{url_for('blog.index')}}" class="navbar-brand">TRNB
         <i class="fas fa-blog"></i>
     </a>
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" id="hiddenNav">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a href="/" class="nav-link">HOME</a>
@@ -13,11 +13,6 @@
                     NEW POST
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{url_for('blog.new_admin')}}" class="nav-link">
-                    NEW ADMIN
-                </a>
-            </li>
             {% endif %}
         </ul>
     </div>
@@ -25,6 +20,12 @@
     <a href="{{url_for('auth.signout')}}" role="button" class="btn btn-dark">
         Signout
     </a>
+    {% else %}
+    <a href="{{url_for('auth.signin')}}" role="button" class="btn btn-outline-secondary text-white">
+        Signin
+    </a>
     {% endif %}
-
+    <button class="btn navbar-toggler" role="button" data-target="#hiddenNav" data-toggle="collapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 </nav>
