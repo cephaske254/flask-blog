@@ -22,10 +22,10 @@
             <a href="{{url_for('blog.subscribe')}}" role="button" class="btn btn-primary mx-1">
                 Subscribe
             </a>
-        {% else %}
-            <a href="{{url_for('blog.subscribe')}}" role="button" class="btn btn-outline-primary mx-1">
-                Unsubscribe
-            </a>
+        {% elif(current_user.role !='admin' and current_user.subscribe =='true') %}
+        <a href="{{url_for('blog.subscribe')}}" role="button" class="btn btn-outline-primary mx-1">
+            Unsubscribe
+        </a>
         {% endif %}
 
         <a href="{{url_for('auth.signout')}}" role="button" class="btn btn-dark">
