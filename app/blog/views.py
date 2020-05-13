@@ -8,13 +8,14 @@ from flask_login import current_user,login_required
 import os
 from config import Config
 from ..email import mail_message
-
+from ..request import fetch_quotes
 uploaded_photos = Config.UPLOADED_PHOTOS_DEST
 @blog.route('/')
 def index():
     title = 'TRN Blog | Home'
     posts = Post.get_all()
-    return render_template('blog/index.html',nav=True, title=title,posts=posts)
+    quote = fetch_quotes()
+    return render_template('blog/index.html',nav=True, title=title,posts=posts,quote=quote)
 
 @blog.route('/post/<int:post_id>')
 def single_post(post_id):
@@ -122,6 +123,6 @@ def subscribe():
         db.session.add(user)
         db.session.commit()
 
-    return redirect(url_for(request.environ['HTTP_REFERER']))
+    return redirect(url_for('blog.index'))
 
 

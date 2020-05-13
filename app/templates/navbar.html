@@ -17,13 +17,25 @@
         </ul>
     </div>
     {% if current_user.is_authenticated %}
-    <a href="{{url_for('auth.signout')}}" role="button" class="btn btn-dark">
-        Signout
-    </a>
+
+        {% if current_user.role !='admin' and current_user.subscribe =='false' %}
+            <a href="{{url_for('blog.subscribe')}}" role="button" class="btn btn-primary mx-1">
+                Subscribe
+            </a>
+        {% else %}
+            <a href="{{url_for('blog.subscribe')}}" role="button" class="btn btn-outline-primary mx-1">
+                Unsubscribe
+            </a>
+        {% endif %}
+
+        <a href="{{url_for('auth.signout')}}" role="button" class="btn btn-dark">
+            Signout
+        </a>
+
     {% else %}
-    <a href="{{url_for('auth.signin')}}" role="button" class="btn btn-outline-secondary text-white">
-        Signin
-    </a>
+        <a href="{{url_for('auth.signin')}}" role="button" class="btn btn-outline-secondary text-white">
+            Signin
+        </a>
     {% endif %}
     <button class="btn navbar-toggler" role="button" data-target="#hiddenNav" data-toggle="collapse">
         <span class="navbar-toggler-icon"></span>
